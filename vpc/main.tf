@@ -9,7 +9,7 @@ resource "aws_vpc" "myvpc" {
 resource "aws_subnet" "myvpc_sub" {
     vpc_id = aws_vpc.myvpc.id
     cidr_block = "10.0.0.0/24"
-    availability_zone = "us-east-1a"
+    availability_zone = var.availability_zone
     map_public_ip_on_launch = true
 
     tags = {
@@ -84,9 +84,9 @@ resource "aws_vpc_security_group_egress_rule" "egress_rule_all" {
 
 
 resource "aws_instance" "webserver1" {
-    ami = "ami-0866a3c8686eaeeba"
-    instance_type = "t2.micro"
-    key_name = "aws-keypair-1"
+    ami = var.ami
+    instance_type = var.instance_type
+    key_name = var.key
     vpc_security_group_ids = [ aws_security_group.websg.id ]
     subnet_id = aws_subnet.myvpc_sub.id
     user_data = "${file("install_jenkins.sh")}"
@@ -100,7 +100,7 @@ resource "aws_instance" "webserver1" {
 resource "aws_subnet" "myvpc_sub2" {
     vpc_id = aws_vpc.myvpc.id
     cidr_block = "10.0.1.0/24"
-    availability_zone = "us-east-1a"
+    availability_zone = var.availability_zone
     map_public_ip_on_launch = true
 }
 
@@ -110,9 +110,9 @@ resource "aws_route_table_association" "rta2" {
 }
 
 resource "aws_instance" "webserver2" {
-    ami = "ami-0866a3c8686eaeeba"
-    instance_type = "t2.micro"
-    key_name = "aws-keypair-1"
+    ami = var.ami
+    instance_type = var.instance_type
+    key_name = var.key
     vpc_security_group_ids = [ aws_security_group.websg.id ]
     subnet_id = aws_subnet.myvpc_sub2.id
     user_data = "${file("install_nginx.sh")}"
