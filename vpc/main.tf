@@ -43,6 +43,7 @@ resource "aws_route_table_association" "rta1" {
     route_table_id = aws_route_table.rt.id
 }
 
+/*
 resource "aws_security_group" "websg" {
   name        = "websg"
   vpc_id      = aws_vpc.myvpc.id
@@ -95,6 +96,7 @@ resource "aws_instance" "webserver1" {
       Project = "jenkins"
     }
 }
+*/
 
 /*
 resource "aws_subnet" "myvpc_sub2" {

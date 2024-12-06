@@ -18,6 +18,6 @@ variable "ami" {
     default = "ami-0866a3c8686eaeeba"
 }
 
-variable "key" {
+variable "mykey" {
     default = "aws-keypair-1"
 }
