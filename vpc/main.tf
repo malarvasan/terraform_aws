@@ -86,7 +86,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_rule_all" {
 resource "aws_instance" "webserver1" {
     ami = var.ami
     instance_type = var.instance_type
-    key_name = var.key
+    key_name = "aws-keypair-1"
     vpc_security_group_ids = [ aws_security_group.websg.id ]
     subnet_id = aws_subnet.myvpc_sub.id
     user_data = "${file("install_jenkins.sh")}"

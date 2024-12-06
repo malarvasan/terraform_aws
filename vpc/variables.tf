@@ -17,3 +17,7 @@ variable "instance_type" {
 variable "ami" {
     default = "ami-0866a3c8686eaeeba"
 }
+
+variable "key" {
+    default = "aws-keypair-1"
+}
